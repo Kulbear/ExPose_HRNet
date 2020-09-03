@@ -9,3 +9,4 @@ json_tricks
 scikit-image
 yacs
 tensorboardX
+tqdm
