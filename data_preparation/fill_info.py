@@ -42,6 +42,8 @@ def add_info_to_json(json_fname, data_path='./'):
 
 if __name__ == '__main__':
     args = parse_args()
+    DATA_PATH = args.dpath
+
     data = sio.loadmat(Path(DATA_PATH, 'json.mat'))
     data_json = json.loads(data['txt'][0])
     my_data = data_json['annolist']
@@ -79,6 +81,6 @@ if __name__ == '__main__':
 
     print('Total # of BBox on People:', len(result))
 
-    # add_info_to_json('train.json')
-    # add_info_to_json('valid.json')
+    add_info_to_json('train.json')
+    add_info_to_json('valid.json')
     add_info_to_json('trainval.json')
