@@ -12,7 +12,7 @@ WORKERS: 12
 PRINT_FREQ: 20
 
 DATASET:
-  COLOR_RGB: false
+  COLOR_RGB: true
   DATASET: mpii
   DATA_FORMAT: jpg
   FLIP: true
@@ -26,7 +26,7 @@ DATASET:
   TRAIN_SET: pretrain_train
   HOLDOUT_SET: pretrain_unused
 MODEL:
-  NAME: 'pose_resnet'
+  NAME: pose_resnet
   PRETRAINED: 'models/pytorch/imagenet/resnet50-19c8e357.pth'
   IMAGE_SIZE:
   - 256

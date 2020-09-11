@@ -47,6 +47,7 @@ _C.DATASET.ROOT = ''
 _C.DATASET.DATASET = 'mpii'
 _C.DATASET.TRAIN_SET = 'train'
 _C.DATASET.TEST_SET = 'valid'
+_C.DATASET.HOLDOUT_SET= 'test'
 _C.DATASET.SPLIT = 'official'
 _C.DATASET.DATA_FORMAT = 'jpg'
 _C.DATASET.HYBRID_JOINTS_TYPE = ''
@@ -116,11 +117,8 @@ _C.DEBUG.SAVE_HEATMAPS_PRED = False
 
 def update_config(cfg, args):
     cfg.defrost()
-    try:
-        cfg.merge_from_file(args.cfg)
-        cfg.merge_from_list(args.opts)
-    except:
-        pass
+    cfg.merge_from_file(args.cfg)
+    cfg.merge_from_list(args.opts)
 
     if args.modelDir:
         cfg.OUTPUT_DIR = args.modelDir
