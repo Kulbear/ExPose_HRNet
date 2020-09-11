@@ -333,7 +333,22 @@ def test(config, val_loader, val_dataset, model, criterion):
             for name_value in name_values:
                 _print_name_value(name_value, model_name)
         else:
-            _print_name_value(name_values, model_name)
+            name_value = name_values
+            names = name_value.keys()
+            values = name_value.values()
+            num_values = len(name_value)
+            print(
+                '| Arch ' +
+                ' '.join(['| {}'.format(name) for name in names]) +
+                ' |'
+            )
+            print('|---' * (num_values + 1) + '|')
+
+            print(
+                '| ' + model_name + ' ' +
+                ' '.join(['| {:.3f}'.format(value) for value in values]) +
+                ' |'
+            )
 
     return perf_indicator
 

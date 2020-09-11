@@ -112,7 +112,7 @@ def main():
 
 
     # evaluate on test set
-    perf_indicator = test(
+    _ = test(
         cfg, valid_loader, valid_dataset, model, criterion)
 
 if __name__ == '__main__':
