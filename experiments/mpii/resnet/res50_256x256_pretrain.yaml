@@ -1,14 +1,15 @@
+EXPERIMENT_GROUP: 'transfer'
 AUTO_RESUME: true
 CUDNN:
   BENCHMARK: true
   DETERMINISTIC: false
   ENABLED: true
 DATA_DIR: ''
-GPUS: (0,1)
+GPUS: (0, 1, 2) # must set to (0) for MAML.
 OUTPUT_DIR: 'output'
 LOG_DIR: 'log'
 WORKERS: 12
-PRINT_FREQ: 100
+PRINT_FREQ: 20
 
 DATASET:
   COLOR_RGB: false
@@ -18,11 +19,12 @@ DATASET:
   NUM_JOINTS_HALF_BODY: 8
   PROB_HALF_BODY: -1.0
   ROOT: '/data/mpii/'
-  SPLIT: 'official'
-  ROT_FACTOR: 30
-  SCALE_FACTOR: 0.25
-  TEST_SET: valid
-  TRAIN_SET: train
+  SPLIT: 'split_thres_60'
+  ROT_FACTOR: 25
+  SCALE_FACTOR: 0.2
+  TEST_SET: pretrain_valid
+  TRAIN_SET: pretrain_train
+  HOLDOUT_SET: pretrain_unused
 MODEL:
   NAME: 'pose_resnet'
   PRETRAINED: 'models/pytorch/imagenet/resnet50-19c8e357.pth'
@@ -54,13 +56,13 @@ TRAIN:
   BATCH_SIZE_PER_GPU: 32
   SHUFFLE: true
   BEGIN_EPOCH: 0
-  END_EPOCH: 140
+  END_EPOCH: 50
   OPTIMIZER: 'adam'
   LR: 0.001
   LR_FACTOR: 0.1
   LR_STEP:
-  - 90
-  - 120
+  - 25
+  - 40
   WD: 0.0001
   GAMMA1: 0.99
   GAMMA2: 0.0

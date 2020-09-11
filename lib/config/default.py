@@ -1,14 +1,3 @@
-
-# ------------------------------------------------------------------------------
-# Copyright (c) Microsoft
-# Licensed under the MIT License.
-# Written by Bin Xiao (Bin.Xiao@microsoft.com)
-# ------------------------------------------------------------------------------
-
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
 import os
 
 from yacs.config import CfgNode as CN
@@ -16,6 +5,7 @@ from yacs.config import CfgNode as CN
 
 _C = CN()
 
+_C.EXPERIMENT_GROUP = ''
 _C.OUTPUT_DIR = ''
 _C.LOG_DIR = ''
 _C.DATA_DIR = ''
@@ -126,8 +116,11 @@ _C.DEBUG.SAVE_HEATMAPS_PRED = False
 
 def update_config(cfg, args):
     cfg.defrost()
-    cfg.merge_from_file(args.cfg)
-    cfg.merge_from_list(args.opts)
+    try:
+        cfg.merge_from_file(args.cfg)
+        cfg.merge_from_list(args.opts)
+    except:
+        pass
 
     if args.modelDir:
         cfg.OUTPUT_DIR = args.modelDir

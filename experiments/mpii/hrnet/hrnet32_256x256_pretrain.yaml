@@ -1,28 +1,30 @@
+EXPERIMENT_GROUP: 'transfer'
 AUTO_RESUME: true
 CUDNN:
   BENCHMARK: true
   DETERMINISTIC: false
   ENABLED: true
 DATA_DIR: ''
-GPUS: (0,1)
+GPUS: (0, 1, 2) # must set to (0) for MAML.
 OUTPUT_DIR: 'output'
 LOG_DIR: 'log'
 WORKERS: 12
-PRINT_FREQ: 100
+PRINT_FREQ: 20
 
 DATASET:
-  COLOR_RGB: true
+  COLOR_RGB: false
   DATASET: mpii
   DATA_FORMAT: jpg
   FLIP: true
   NUM_JOINTS_HALF_BODY: 8
   PROB_HALF_BODY: -1.0
   ROOT: '/data/mpii/'
-  SPLIT: 'official'
-  ROT_FACTOR: 30
-  SCALE_FACTOR: 0.25
-  TEST_SET: valid
-  TRAIN_SET: train
+  SPLIT: 'split_thres_60'
+  ROT_FACTOR: 25
+  SCALE_FACTOR: 0.2
+  TEST_SET: pretrain_valid
+  TRAIN_SET: pretrain_train
+  HOLDOUT_SET: pretrain_unused
 MODEL:
   INIT_WEIGHTS: true
   NAME: pose_hrnet
