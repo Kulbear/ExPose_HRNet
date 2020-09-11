@@ -34,7 +34,7 @@ class MPIIDataset(JointsDataset):
         self.lower_body_ids = (0, 1, 2, 3, 4, 5, 6)
 
         self.split = cfg.DATASET.SPLIT
-
+        self.gt = None
         self.db = self._get_db()
 
         if is_train and cfg.DATASET.SELECT_DATA:
@@ -112,7 +112,7 @@ class MPIIDataset(JointsDataset):
         gt_file = os.path.join(cfg.DATASET.ROOT,
                                'annot',
                                self.split,
-                               'gt_{}.mat'.format(cfg.DATASET.TEST_SET))
+                               'gt_{}.mat'.format(cfg.DATASET.TEST_SET if self.gt is None else self.gt))
         gt_dict = loadmat(gt_file)
         dataset_joints = gt_dict['dataset_joints']
         jnt_missing = gt_dict['jnt_missing']
