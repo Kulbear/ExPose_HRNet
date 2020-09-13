@@ -103,8 +103,8 @@ class MPIIDataset(JointsDataset):
             pred_file = os.path.join(output_dir, 'pred.mat')
             savemat(pred_file, mdict={'preds': preds})
 
-        if 'test' in cfg.DATASET.TEST_SET:
-            return {'Null': 0.0}, 0.0
+        # if 'test' in cfg.DATASET.TEST_SET:
+        #     return {'Null': 0.0}, 0.0
 
         SC_BIAS = 0.6
         threshold = 0.5
