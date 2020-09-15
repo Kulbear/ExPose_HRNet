@@ -79,6 +79,7 @@ target/
 *.ipynb
 *.params
 *.json
+*.mat
 .vscode/
 
 lib/pycocotools/_mask.c
